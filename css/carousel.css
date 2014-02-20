@@ -286,3 +286,60 @@ height: 530px;
   padding: 18px;
   font-size: 11px;
 }
+
+.dropdown-menu {
+  width: 330px;
+
+}
+
+.menubar {
+  width: 1000px;
+  margin-top: 10px;
+  height: 53px;
+  position: absolute;
+  margin-left: 1000px;
+}
+
+.btn-default{
+  background-color:#3eb70e;
+  border-color: #3eb70e;
+  color: #ffffff;
+}
+
+.btn-default1{
+  width:200px;
+}
+
+.btn-default:hover{
+  background-color:#47db0c;
+  border-color:#47db0c;
+  color: #ffffff;
+}
+
+.btn1{
+    margin-right: 10px;
+    
+    margin-left: -100px;
+}
+
+.btn-success{
+    width: 200px;
+  
+    margin-left: 70px;
+}
+
+.form-control:hover{
+  border-color: #3eb70e;
+}
+
+.dropdown-menu:active{
+  display:block;
+}
+
+.dropdown-menu:focus{
+  display:block;
+}
+
+.dropdown-menu:visited{
+  display:block;
+}
