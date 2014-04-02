@@ -1,0 +1,83 @@
+﻿@{
+    string idNumber = "";
+    string emailAddress = "";
+    string password = "";
+
+    if (IsPost) {
+        // TODO: Validate user
+
+        idNumber = @Request["regId"];
+        emailAddress = @Request["regEmail"];
+        password = @Request["regPassword"];
+        
+        //WebSecurity.CreateUserAndAccount(idNumber, password, null, false);
+        //WebSecurity.Login(idNumber, password);
+    }
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CSlibrary - Registration successful!</title>
+
+    <!-- Bootstrap core -->
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+
+    <!-- Custom Google Web Font -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+
+    <!-- Animations -->
+    <link rel="stylesheet" href="Content/animations.css" />
+
+    <!-- Custom stylesheets -->
+    <link rel="stylesheet" href="Content/landing-page.css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">CSlibrary</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="starter-template">
+            @{
+                if (IsPost) {
+                    @:<h1>Thanks for signing up!</h1>
+                    @:<p class="lead">
+                    @:    We've sent an email to @emailAddress. Click on the link to confirm your registration and activate your account.<br />
+                    @:    Click <a href="Default.cshtml">here</a> to go back to the main page.
+                    @:</p>
+                }
+                else {
+                    @:<h1>403</h1>
+                    @:<p class="lead">What are you doing here?</p>
+                    
+                
+                }
+            }
+            
+        </div>
+
+    </div><!-- /.container -->
+    
+    <!-- JavaScript -->
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>

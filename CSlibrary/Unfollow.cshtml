@@ -1,0 +1,23 @@
+﻿@{
+    //string idNumber = Request["idNumber"];
+    string courseCode = Request["courseCode"];
+    List<String> followedCourses = new List<String>();
+    
+    StreamReader reader = new StreamReader("D:/Files/11110104/Followed.txt");
+    string line;
+    while ((line = reader.ReadLine()) != null) {
+        if (!line.Equals(courseCode)) {
+            followedCourses.Add(line);
+        }
+            
+    }
+    reader.Close();
+    
+    StreamWriter writer = new StreamWriter("D:/Files/11110104/Followed.txt");
+    foreach (string course in followedCourses) {
+        writer.WriteLine(course);
+    }
+    writer.Close();
+
+    Response.Redirect("~/ViewCourses.cshtml");
+}

@@ -1,0 +1,10 @@
+﻿@{
+    //string idNumber = Request["idNumber"];
+    string courseCode = Request["courseCode"];
+
+    StreamWriter writer = new StreamWriter("D:/Files/11110104/Followed.txt", true);
+    writer.WriteLine(courseCode);
+    writer.Close();
+    
+    Response.Redirect("~/ViewCourses.cshtml");
+}
