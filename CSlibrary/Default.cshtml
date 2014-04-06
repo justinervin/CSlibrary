@@ -1,7 +1,8 @@
 ﻿@{
-    //if (!IsPost && WebSecurity.IsAuthenticated) {
-    //    Response.Redirect("~/Main.cshtml");
-    //}    
+    // Redirect to main page if user is already logged in
+    if (WebSecurity.IsAuthenticated) {
+        Response.Redirect("~/CSlibrary/Main.cshtml");
+    }
 }
 
 <!DOCTYPE html>
@@ -43,22 +44,15 @@
                     <span class="icon-bar"></span>
                     <!-- <span class="glyphicon glyphicon-log-in"></span> -->
                 </button>
-                <a class="navbar-brand" href="#">CSlibrary</a>
+                <a class="navbar-brand" href="Default.cshtml">CSlibrary</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    @if (WebSecurity.IsAuthenticated) {
-                        @:<li><span class="navbar-text">Welcome, @WebSecurity.CurrentUserName</span></li>
-                        @:<li><span class="navbar-text">|</span></li>
-                        @:<li><a href="#">Log out</a></li>
-                    }
-                    else {
-                        @:<li><a href="#" data-toggle="modal" data-target="#login-form">Sign in</a></li>
-                        @:<li><span class="navbar-text">|</span></li>
-                        @:<li><a href="#" data-toggle="modal" data-target="#signup-form">Get Started</a></li>
-                    }
+                    <li><a href="#" data-toggle="modal" data-target="#login-form">Sign in</a></li>
+                    <li><span class="navbar-text">|</span></li>
+                    <li><a href="#" data-toggle="modal" data-target="#signup-form">Get Started</a></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +67,7 @@
                     <h4 class="modal-title">Sign in</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="Main.cshtml" role="form">
+                    <form method="post" action="Login.cshtml" role="form">
                         <div class="form-group">
                             <input type="text" name="loginId" id="loginId" class="form-control" placeholder="ID Number" tabindex="1" />
                         </div>
@@ -81,7 +75,8 @@
                             <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Password" tabindex="2" />
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" tabindex="3"> Remember me</label>
+                            <input type="checkbox" id="rememberMe" name="rememberMe" value="true" tabindex="3" />
+                            <label class="checkbox" for="rememberMe">Remember me?</label>
                         </div>
                         <button type="submit" class="btn btn-success btn-block" tabindex="4">Sign in</button>
                     </form>
@@ -119,9 +114,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" tabindex="4" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4">
-                                <button type="submit" value="submit" class="btn btn-success btn-block" tabindex="4">Sign up</button>
+                                <button type="submit" value="submit" class="btn btn-success btn-block" tabindex="5">Sign up</button>
                             </div>
                             <div class="col-sm-4"></div>
                         </div>
@@ -247,50 +248,9 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                $('#img1').each(function () {
-                    var imagePos = $(this).offset().top;
-
-                    var topOfWindow = $(window).scrollTop();
-                    if (imagePos < topOfWindow + 400) {
-                        $(this).addClass("fadeIn");
-                    }
-                });
-
-                $('#img2').each(function () {
-                    var imagePos = $(this).offset().top;
-
-                    var topOfWindow = $(window).scrollTop();
-                    if (imagePos < topOfWindow + 400) {
-                        $(this).addClass("slideRight");
-                    }
-                });
-
-                $('#img3').each(function () {
-                    var imagePos = $(this).offset().top;
-
-                    var topOfWindow = $(window).scrollTop();
-                    if (imagePos < topOfWindow + 400) {
-                        $(this).addClass("pullUp");
-                    }
-                });
-            });
-
-            $('#login-form').on('shown.bs.modal', function() {
-                $('#loginId').focus();
-            });
-
-            $('#signup-form').on('shown.bs.modal', function () {
-                $('#regId').focus();
-            });
-        });
-    </script>
-
+    <script src="Scripts/LandingPage.js"></script>
 </body>
 
 </html>
