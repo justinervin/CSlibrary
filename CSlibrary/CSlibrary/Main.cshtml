@@ -30,12 +30,12 @@
                               ORDER BY Files.DateUploaded DESC");
 
     var fileName = "";
-    
+
+    var fileSavePath = "";
     if (IsPost) {
-        var fileSavePath = "";
         var uploadedFile = Request.Files[0];
         fileName = Path.GetFileName(uploadedFile.FileName);
-        fileSavePath = Server.MapPath("~/App_Data/UploadedFiles/" + fileName);
+        fileSavePath = Server.MapPath("~/UploadedFiles/" + fileName);
         uploadedFile.SaveAs(fileSavePath);
         db.Execute("INSERT INTO Files (Filename, DateUploaded, UploadedBy, CourseCode) VALUES (@0, @1, @2, @3)", 
             fileName, DateTime.Now, idNumber, Request.Form["coursecode"]);
@@ -51,6 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>CSlibrary</title>
+
 
     <!-- Bootstrap core -->
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />

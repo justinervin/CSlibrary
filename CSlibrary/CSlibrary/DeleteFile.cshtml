@@ -8,7 +8,7 @@
     var file = db.QuerySingle("SELECT * FROM Files WHERE ID=(@0)", fileId);
     
     filename = file["Filename"];
-    var fullPath = Server.MapPath("~/App_Data/UploadedFiles/" + filename);
+    var fullPath = Server.MapPath("~/UploadedFiles/" + filename);
     if (File.Exists(fullPath)) {
         File.Delete(fullPath);
     }
